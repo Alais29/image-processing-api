@@ -20,7 +20,8 @@ const imageTransform = async (
   const imageOutput: string =
     path.join(__dirname, '../', 'assets/', 'thumbnails/', filename) +
     `-${width}-${height}.jpg`;
-
+  
+  // if the image output folder doesn't exists, create it
   if (!fs.existsSync(imageOutputFolder)) {
     await fsPromises.mkdir(imageOutputFolder);
   }

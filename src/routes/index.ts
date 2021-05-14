@@ -43,7 +43,7 @@ routes.get(
         }
       }
     } else {
-      // if one of the parameters is missing in the request URL, then send a proper error message
+      // if one of the parameters is missing in the request URL or if width or height are not numbers, then send a proper error message
       res
         .status(500)
         .send(
