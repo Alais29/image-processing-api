@@ -6,16 +6,16 @@ import app from '../index';
 const request = supertest(app);
 
 describe('Test endpoint response', () => {
-  it('gets the api/images endpoint', async () => {
+  it('gets the api/images endpoint and returns a 500 error if no parameters are set', async () => {
     const response = await request.get('/api/images');
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(500);
   });
 });
 
 describe('Test image processing', () => {
   const filename = 'santamonica';
-  const width = 300;
-  const height = 300;
+  const width = '300';
+  const height = '300';
   const outputPath =
     path.join(__dirname, '../', 'assets/', 'thumbnails/', filename) +
     `-${width}-${height}.jpg`;
@@ -41,7 +41,15 @@ describe('Test image processing', () => {
       `/api/images?filename=${filename}&width=${width}`
     );
     expect(response.text).toBe(
-      'Please set a filename, width and height as parameters in the url (all 3 are mandatory).'
+      'Please set a filename, width and height as parameters in the url (all 3 are mandatory and width and height must be numbers).'
+    );
+  });
+  it('returns a proper error message if width or height are not numbers', async () => {
+    const response = await request.get(
+      `/api/images?filename=${filename}&width=${width}&height=test`
+    );
+    expect(response.text).toBe(
+      'Please set a filename, width and height as parameters in the url (all 3 are mandatory and width and height must be numbers).'
     );
   });
 });
