@@ -2,21 +2,19 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import imageTransform from '../utilities/imageTransform';
-import checkParams from '../utilities/checkParams';
+import {checkParams, IQuery} from '../utilities/checkParams';
 
 const routes = express.Router();
 
-routes.get('/images', async (req, res) => {
-  //get the request parameters keys from the URL
-  const paramsKeys = Object.keys(req.query);
-  // check if all 3 mandatory parameters are set
-  if (checkParams(paramsKeys)) {
+routes.get('/images', async (req: express.Request, res: express.Response): Promise<void> => {
+  // check if all 3 mandatory parameters are set and width and height are numbers
+  if (checkParams((req.query as unknown) as IQuery)) {
     // set each parameter to a variable
     const filename = req.query.filename as string;
     const width = Number(req.query.width);
     const height = Number(req.query.height);
 
-    const imageThumbnail =
+    const imageThumbnail: string =
       path.join(__dirname, '../', 'assets/', 'thumbnails/', filename) +
       `-${width}-${height}.jpg`;
     // check if the requested image with the requested size already exists
@@ -35,15 +33,15 @@ routes.get('/images', async (req, res) => {
         res.sendFile(imgProcessed);
       } else {
         // if the response includes the word "Error", send a proper error message
-        res.send(
+        res.status(404).send(
           'There is no such file on the server, please verify the file name.'
         );
       }
     }
   } else {
-    // IF one of the parameters is missing in the request URL, then send a proper error message
-    res.send(
-      'Please set a filename, width and height as parameters in the url (all 3 are mandatory).'
+    // if one of the parameters is missing in the request URL, then send a proper error message
+    res.status(500).send(
+      'Please set a filename, width and height as parameters in the url (all 3 are mandatory and width and height must be numbers).'
     );
   }
 });
