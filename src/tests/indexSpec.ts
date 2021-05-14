@@ -16,26 +16,32 @@ describe('Test image processing', () => {
   const filename = 'santamonica';
   const width = 300;
   const height = 300;
-  const outputPath = path.join(
-    __dirname,
-    '../',
-    'assets/',
-    'thumbnails/',
-    filename,
-  ) + `-${width}-${height}.jpg`;
+  const outputPath =
+    path.join(__dirname, '../', 'assets/', 'thumbnails/', filename) +
+    `-${width}-${height}.jpg`;
 
   it('resizes an image when proper parameters are set in the url', async () => {
-    await request.get(`/api/images?filename=${filename}&width=${width}&height=${height}`);
+    await request.get(
+      `/api/images?filename=${filename}&width=${width}&height=${height}`
+    );
     expect(fs.existsSync(outputPath)).toBeTrue();
   });
 
-  it('returns a proper error message when the image to be processed doesn\'t exist', async () => {
-    const response = await request.get(`/api/images?filename=test&width=${width}&height=${height}`);
-    expect(response.text).toBe('There\'s no such file on the server, please verify the file name.');
+  it('returns a proper error message when the image to be processed does not exist', async () => {
+    const response = await request.get(
+      `/api/images?filename=test&width=${width}&height=${height}`
+    );
+    expect(response.text).toBe(
+      'There\'s no such file on the server, please verify the file name.'
+    );
   });
-  
-  it('returns a proper error message when one of the url parameters isn\'t set', async () => {
-    const response = await request.get(`/api/images?filename=${filename}&width=${width}`);
-    expect(response.text).toBe('Please set a filename, width and height as parameters in the url (all 3 are mandatory).');
+
+  it('returns a proper error message when one of the url parameters is not set', async () => {
+    const response = await request.get(
+      `/api/images?filename=${filename}&width=${width}`
+    );
+    expect(response.text).toBe(
+      'Please set a filename, width and height as parameters in the url (all 3 are mandatory).'
+    );
   });
 });
