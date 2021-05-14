@@ -15,7 +15,7 @@ const imageTransform = async (filename: string, width: number, height: number): 
     'assets/',
     'thumbnails/',
     filename,
-  ) + `-thumbnail-${width}-${height}.jpg`;
+  ) + `-${width}-${height}.jpg`;
 
   try {
     await sharp(imageInput).resize(width, height).toFile(imageOutput);

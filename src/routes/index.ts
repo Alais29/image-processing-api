@@ -19,7 +19,7 @@ routes.get('/images', async (req, res) => {
       'assets/',
       'thumbnails/',
       filename,
-    ) + `-thumbnail-${width}-${height}.jpg`;
+    ) + `-${width}-${height}.jpg`;
     if (fs.existsSync(imageThumbnail)) {
       res.sendFile(imageThumbnail);
     } else {
@@ -31,7 +31,7 @@ routes.get('/images', async (req, res) => {
       }
     }
   } else {
-    res.send('Please set a filename, width and height as parameters in the url.');
+    res.send('Please set a filename, width and height as parameters in the url (all 3 are mandatory).');
   }  
 });
 
