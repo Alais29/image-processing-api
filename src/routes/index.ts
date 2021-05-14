@@ -36,7 +36,7 @@ routes.get('/images', async (req, res) => {
       } else {
         // if the response includes the word "Error", send a proper error message
         res.send(
-          'There\'s no such file on the server, please verify the file name.'
+          'There is no such file on the server, please verify the file name.'
         );
       }
     }

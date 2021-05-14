@@ -32,7 +32,7 @@ describe('Test image processing', () => {
       `/api/images?filename=test&width=${width}&height=${height}`
     );
     expect(response.text).toBe(
-      'There\'s no such file on the server, please verify the file name.'
+      'There is no such file on the server, please verify the file name.'
     );
   });
 
