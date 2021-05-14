@@ -11,15 +11,20 @@ const imageTransform = async (
 ): Promise<string> => {
   const imageInput: string =
     path.join(__dirname, '../', 'assets/', 'originals/', filename) + '.jpg';
-  const imageOutputFolder: string = path.join(__dirname, '../', 'assets/', 'thumbnails/');
+  const imageOutputFolder: string = path.join(
+    __dirname,
+    '../',
+    'assets/',
+    'thumbnails/'
+  );
   const imageOutput: string =
     path.join(__dirname, '../', 'assets/', 'thumbnails/', filename) +
     `-${width}-${height}.jpg`;
-  
+
   if (!fs.existsSync(imageOutputFolder)) {
     await fsPromises.mkdir(imageOutputFolder);
   }
-  
+
   try {
     // await for sharp to process the image, if it succeds, returns the imageOutput
     await sharp(imageInput).resize(width, height).toFile(imageOutput);

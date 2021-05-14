@@ -2,9 +2,9 @@
 import { itemsInArray, isArrOfNumbers } from './arrays';
 
 interface IQuery {
-  filename: string
-  width: number
-  height: number
+  filename: string;
+  width: number;
+  height: number;
 }
 
 const checkParams = (query: IQuery): boolean => {
@@ -15,4 +15,4 @@ const checkParams = (query: IQuery): boolean => {
   return itemsInArray(params, paramsKeys) && isArrOfNumbers(widthAndHeight);
 };
 
-export {checkParams, IQuery};
+export { checkParams, IQuery };
