@@ -17,7 +17,7 @@ describe('Test image processing', () => {
   const width = '300';
   const height = '300';
   const outputPath =
-    path.join(__dirname, '../', 'assets/', 'thumbnails/', filename) +
+    path.join(__dirname, '../', '../', 'assets/', 'thumbnails/', filename) +
     `-${width}-${height}.jpg`;
 
   it('resizes an image when proper parameters are set in the url', async () => {
