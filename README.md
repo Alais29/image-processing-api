@@ -15,8 +15,7 @@
 - Run ```npm run build```
 - Set the image you want to resize under ```build/assets/originals``` (The file must be a .jpg)
 - Start the app with ```node build/.```
-- Go to ```http://localhost:3000/api/images```
-- Set the name of the image (filename) and the desired width and height as parameters in the URL, for example: ```http://localhost:3000/api/images?filename=santamonica&width=400&height=400```
+- Use the URL ```http://localhost:3000/api/images``` and set the name of the image (filename) and the desired width and height as parameters, for example: ```http://localhost:3000/api/images?filename=santamonica&width=400&height=400```
 - You'll get the resized image in the browser, and you can see it as well under ```build/assets/thumbnails```
 
 ### Run developer server
