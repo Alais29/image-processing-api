@@ -17,7 +17,7 @@ routes.get(
       const height = Number(req.query.height);
 
       const imageThumbnail: string =
-        path.join(__dirname, '../', 'assets/', 'thumbnails/', filename) +
+        path.join(__dirname, '../', '../', 'assets/', 'thumbnails/', filename) +
         `-${width}-${height}.jpg`;
       // check if the requested image with the requested size already exists
       if (fs.existsSync(imageThumbnail)) {
