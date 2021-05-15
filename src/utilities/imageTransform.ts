@@ -10,7 +10,8 @@ const imageTransform = async (
   height: number
 ): Promise<string> => {
   const imageInput: string =
-    path.join(__dirname, '../', '../', 'assets/', 'originals/', filename) + '.jpg';
+    path.join(__dirname, '../', '../', 'assets/', 'originals/', filename) +
+    '.jpg';
   const imageOutputFolder: string = path.join(
     __dirname,
     '../',
