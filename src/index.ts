@@ -1,7 +1,7 @@
 import express from 'express';
 import routes from './routes/index';
 
-const app = express();
+const app: express.Application = express();
 const port = 3000;
 
 // Set the routes
